@@ -2,13 +2,15 @@
 // Template version: 1.1.1
 // see http://vuejs-templates.github.io/webpack for documentation.
 
+require('dotenv').config()
+
 const path = require('path')
 const commonProxy = {
   onProxyReq: (proxyReq, req, res) => {
     proxyReq.setHeader('Referer', process.env.TARGET)
   },
   target: process.env.TARGET,
-  changeOrigin: true
+  changeOrigin: true,
 }
 
 module.exports = {

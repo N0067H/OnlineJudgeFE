@@ -13,6 +13,8 @@ const webpack = require('webpack')
 const proxyMiddleware = require('http-proxy-middleware')
 const webpackConfig = require('./webpack.dev.conf')
 
+require('dotenv').config();
+
 // default port where dev server listens for incoming traffic
 const port = process.env.PORT || config.dev.port
 // automatically open browser, if not set will be false
@@ -48,7 +50,10 @@ const hotMiddleware = require('webpack-hot-middleware')(compiler, {
 app.use(hotMiddleware)
 
 // proxy api requests
-Object.keys(proxyTable).forEach(function (context) {
+Object.keys(proxyTable).forEach(function (context) 
+{
+  console.log('process.env.TARGET:', process.env.TARGET)
+
   let options = proxyTable[context]
   if (typeof options === 'string') {
     options = { target: options }
